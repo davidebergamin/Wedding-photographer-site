@@ -1,35 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts - Filippo Marchetti Photography</title>
+    <title>Contatti - Filippo Marchetti Fotografia</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="script.js" defer></script>
+    <style>
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+        nav {
+            position: static !important;
+            transform: none !important;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+        .contacts-container {
+            max-height: calc(100vh - 100px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .contact-form-container {
+            margin-top: 20px;
+        }
+        .contact-form textarea {
+            height: 80px;
+        }
+        footer {
+            display: none;
+        }
+    </style>
 </head>
-<body>
+<body class="contact-page">
     <!-- Navigation -->
     <nav class="visible">
         <div class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="nav-logo">Filippo Marchetti</a>
-                <p class="nav-tagline">Wedding Photography</p>
+                <p class="nav-tagline">Fotografia di Matrimonio</p>
             </div>
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="stories.html">Stories</a>
-                    <a href="contacts.html" class="active">Contacts</a>
+                    <a href="about.html">Chi Sono</a>
+                    <a href="stories.html">Storie</a>
+                    <a href="contacts.html" class="active">Contatti</a>
                 </div>
                 <div class="nav-social">
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
                 </div>
             </div>
             <div class="mobile-menu-toggle">
@@ -41,8 +64,8 @@
     <!-- Contacts Section -->
     <section id="contacts" class="contacts">
         <div class="contacts-container">
-            <h1>GET IN TOUCH</h1>
-            <p class="contacts-intro">I'd love to hear about your wedding plans and discuss how I can help capture your special day.</p>
+            <h1>CONTATTAMI</h1>
+            <p class="contacts-intro">Mi piacerebbe conoscere i tuoi piani per il matrimonio e discutere come posso aiutarti a catturare il tuo giorno speciale.</p>
             
             <div class="contact-buttons">
                 <a href="https://wa.me/+391234567890" class="contact-button whatsapp">
@@ -62,29 +85,24 @@
             </div>
             
             <div class="contact-form-container">
-                <h2>SEND A MESSAGE</h2>
+                <h2>INVIA UN MESSAGGIO</h2>
                 <form id="contactForm" class="contact-form">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Il Tuo Nome" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="La Tua Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <input type="text" id="subject" name="subject" placeholder="Oggetto" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        <textarea id="message" name="message" placeholder="Il Tuo Messaggio" required></textarea>
                     </div>
-                    <button type="submit" class="btn-submit">SEND</button>
+                    <button type="submit" class="btn-submit">INVIA</button>
                 </form>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Filippo Marchetti Photography. All rights reserved.</p>
-    </footer>
 </body>
 </html> 

@@ -45,9 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Scroll animations for navbar and stories section
+    // Scroll animations for navbar
     const nav = document.querySelector('nav');
-    const storiesSection = document.querySelector('.stories');
     const heroSection = document.querySelector('.hero');
     
     function handleScroll() {
@@ -58,14 +57,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollPosition > 100) {
             nav.classList.add('visible');
         } else {
-            nav.classList.remove('visible');
+            // Only hide navbar if not on about or contact page
+            if (!document.body.classList.contains('about-page') && 
+                !document.body.classList.contains('contact-page')) {
+                nav.classList.remove('visible');
+            }
         }
         
-        // Animate stories section when it comes into view
-        if (storiesSection && heroSection) {
-            if (scrollPosition > heroHeight * 0.7) {
-                storiesSection.classList.add('visible');
-            }
+        // Make stories section visible immediately
+        const storiesSection = document.querySelector('.stories');
+        if (storiesSection) {
+            storiesSection.classList.add('visible');
         }
     }
     
@@ -113,30 +115,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Form submitted:', { name, email, subject, message });
             
             // Show success message (in a real application)
-            alert('Thank you for your message! We will get back to you soon.');
+            alert('Grazie per il tuo messaggio! Ti risponderemo al più presto.');
             
             // Reset form
             contactForm.reset();
         });
     }
     
-    // Add animation to elements when they come into view
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.gallery-item, .package');
-        
-        elements.forEach(function(element) {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animate');
-            }
-        });
-    };
-    
-    // Run animation check on scroll
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Run once on page load
-    animateOnScroll();
+    // Make all gallery items visible immediately
+    const galleryItems = document.querySelectorAll('.gallery-item, .story-item');
+    galleryItems.forEach(item => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+    });
 }); 

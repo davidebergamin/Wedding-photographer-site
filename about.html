@@ -10,6 +10,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="script.js" defer></script>
+    <style>
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+        nav {
+            position: static !important;
+            transform: none !important;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+        .about-container {
+            max-height: calc(100vh - 100px);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        .about-image {
+            flex: 0 0 300px;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .about-text {
+            flex: 1;
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            .about-image {
+                flex: 0 0 auto;
+                max-width: 250px;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
 </head>
 <body class="about-page">
     <!-- Navigation -->
@@ -45,10 +89,10 @@
                 </div>
                 <div class="about-text">
                     <h1>CHI SONO</h1>
-                    <p>Sono Filippo Marchetti, un fotografo di matrimoni con base in Italia e una passione per catturare momenti autentici e raccontare storie uniche.</p>
-                    <p>Il mio approccio alla fotografia di matrimonio è documentaristico e discreto. Credo nel catturare emozioni genuine e creare immagini senza tempo che ti riporteranno a quei momenti speciali per gli anni a venire.</p>
-                    <p>Con oltre 10 anni di esperienza, ho avuto il privilegio di documentare matrimoni in tutta Italia e a livello internazionale, da cerimonie intime a grandi celebrazioni.</p>
-                    <p>Ogni matrimonio è unico, e mi dedico a creare una narrazione visiva che rappresenti autenticamente la vostra storia d'amore e l'atmosfera del vostro giorno speciale.</p>
+                    <p>Ciao, sono Filippo Marchetti, un fotografo di matrimoni con base in Italia. La mia passione è catturare momenti autentici e creare immagini che raccontino la storia unica del vostro giorno speciale.</p>
+                    <p>Con un approccio documentaristico e un occhio per i dettagli, lavoro discretamente per immortalare le emozioni genuine, le risate spontanee e i momenti intimi che rendono ogni matrimonio unico.</p>
+                    <p>Ho avuto il privilegio di documentare matrimoni in tutta Italia e all'estero, dalle rustiche ville toscane ai maestosi castelli piemontesi, dalle eleganti ville sul Lago di Como ai giardini inglesi.</p>
+                    <p>Credo che le fotografie di matrimonio più belle siano quelle che catturano l'essenza della vostra relazione e la gioia della celebrazione, creando ricordi che dureranno per generazioni.</p>
                 </div>
             </div>
         </div>
