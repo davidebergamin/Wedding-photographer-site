@@ -1,31 +1,13 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Get navbar element
-    const navbar = document.getElementById('navbar');
-    const heroSection = document.getElementById('hero');
-    
-    // Show/hide navbar on scroll
-    window.addEventListener('scroll', function() {
-        const heroHeight = heroSection.offsetHeight;
-        const scrollPosition = window.scrollY;
-        
-        // Show navbar when scrolled past hero section
-        if (scrollPosition > heroHeight - 100) {
-            navbar.classList.add('visible');
-        } else {
-            navbar.classList.remove('visible');
-        }
-    });
-    
     // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navRight = document.querySelector('.nav-right');
-    const bars = document.querySelectorAll('.menu-toggle .bar');
     
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
             navRight.classList.toggle('active');
-            bars.forEach(bar => bar.classList.toggle('change'));
+            menuToggle.classList.toggle('active');
         });
     }
     
@@ -34,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navRight && navRight.classList.contains('active')) {
             if (!navRight.contains(event.target) && !menuToggle.contains(event.target)) {
                 navRight.classList.remove('active');
-                bars.forEach(bar => bar.classList.remove('change'));
+                menuToggle.classList.remove('active');
             }
         }
     });
@@ -57,11 +39,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Close mobile menu after clicking a link
                 if (navRight && navRight.classList.contains('active')) {
                     navRight.classList.remove('active');
-                    bars.forEach(bar => bar.classList.remove('change'));
+                    menuToggle.classList.remove('active');
                 }
             }
         });
     });
+    
+    // Scroll animations for navbar and stories section
+    const nav = document.querySelector('nav');
+    const storiesSection = document.querySelector('.stories');
+    const heroSection = document.querySelector('.hero');
+    
+    function handleScroll() {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+        
+        // Show/hide navbar based on scroll position
+        if (scrollPosition > 100) {
+            nav.classList.add('visible');
+        } else {
+            nav.classList.remove('visible');
+        }
+        
+        // Animate stories section when it comes into view
+        if (storiesSection && heroSection) {
+            if (scrollPosition > heroHeight * 0.7) {
+                storiesSection.classList.add('visible');
+            }
+        }
+    }
+    
+    // Initial check for page load
+    handleScroll();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', handleScroll);
     
     // Add active class to nav links based on scroll position
     const sections = document.querySelectorAll('section[id]');
@@ -84,27 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', highlightNavOnScroll);
     
-    // Initialize image hover effects for story items
-    const storyItems = document.querySelectorAll('.story-item');
-    
-    storyItems.forEach(item => {
-        const content = item.querySelector('.story-content');
-        const link = item.querySelector('.story-link');
-        
-        if (content && link) {
-            // Show content on hover
-            item.addEventListener('mouseenter', () => {
-                content.style.opacity = '1';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                content.style.opacity = '0';
-            });
-        }
-    });
-    
     // Form submission
-    const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -112,12 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get form data
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const date = document.getElementById('date').value;
+            const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
             
             // Here you would typically send the data to a server
             // For now, we'll just log it to the console
-            console.log('Form submitted:', { name, email, date, message });
+            console.log('Form submitted:', { name, email, subject, message });
             
             // Show success message (in a real application)
             alert('Thank you for your message! We will get back to you soon.');

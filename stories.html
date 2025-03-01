@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filippo Marchetti | Fotografia di Matrimonio</title>
+    <title>Storie di Matrimonio - Filippo Marchetti Fotografia</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Hero Section with Full-width Image -->
-    <section id="hero" class="hero">
-        <div class="hero-text">
-            <h1>FILIPPO MARCHETTI</h1>
-            <p class="tagline">PRONTO A RACCONTARE LA TUA STORIA</p>
-        </div>
-    </section>
-
     <!-- Navigation -->
-    <nav>
+    <nav class="visible">
         <div class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="nav-logo">Filippo Marchetti</a>
@@ -29,9 +21,9 @@
             </div>
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="index.html" class="active">Home</a>
+                    <a href="index.html">Home</a>
                     <a href="about.html">Chi Sono</a>
-                    <a href="stories.html">Storie</a>
+                    <a href="stories.html" class="active">Storie</a>
                     <a href="contacts.html">Contatti</a>
                 </div>
                 <div class="nav-social">
@@ -44,8 +36,16 @@
         </div>
     </nav>
 
-    <!-- Stories Grid Section -->
-    <section id="stories" class="stories">
+    <!-- Stories Header -->
+    <header class="stories-header">
+        <div class="stories-title">
+            <h1>STORIE DI MATRIMONIO</h1>
+            <p>Esplora alcuni dei bellissimi matrimoni che ho avuto il privilegio di catturare.</p>
+        </div>
+    </header>
+
+    <!-- Stories Section -->
+    <section class="stories visible">
         <div class="stories-container">
             <div class="stories-grid">
                 <div class="story-item">

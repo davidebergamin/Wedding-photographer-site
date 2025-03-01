@@ -13,7 +13,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-weight: 500;
+    font-weight: 700;
 }
 
 a {
@@ -39,17 +39,30 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .hero-text {
     text-align: center;
     color: #fff;
     z-index: 2;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-text h1 {
     font-size: 2.5rem;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 10px;
 }
@@ -58,342 +71,341 @@ section {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 1px;
+    font-weight: 600;
 }
 
-/* Navigation */
-.navbar {
+/* Navigation Styles */
+nav {
+    position: fixed;
+    top: 0;
     width: 100%;
-    padding: 20px 0;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 1000;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+    transform: translateY(-100%);
+}
+
+nav.visible {
+    transform: translateY(0);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Make navbar always visible on About and Contact pages */
+.about-page nav, .contact-page nav {
+    transform: translateY(0);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 15px 30px;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 30px;
 }
 
 .nav-left {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .nav-logo {
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+    margin: 0;
 }
 
 .nav-tagline {
-    font-size: 0.7rem;
-    color: #888;
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    margin: 5px 0 0;
+    color: #666;
 }
 
 .nav-right {
     display: flex;
     align-items: center;
+    gap: 30px;
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 15px;
+    gap: 30px;
 }
 
 .nav-links a {
-    color: #333;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
     position: relative;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #888;
+    color: #666;
 }
 
-.nav-links a.active::after {
+.nav-links a::after {
     content: '';
     position: absolute;
+    width: 0;
+    height: 2px;
     bottom: -5px;
     left: 0;
+    background-color: #000;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
-    height: 1px;
-    background-color: #888;
 }
 
-.social-icons {
+.nav-social {
     display: flex;
-    margin-left: 30px;
+    gap: 15px;
 }
 
-.social-icon {
-    color: #333;
+.nav-social a {
+    color: #000;
     font-size: 1rem;
-    margin-left: 15px;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
-.social-icon:hover {
-    color: #888;
+.nav-social a:hover {
+    color: #666;
 }
 
-.menu-toggle {
+.mobile-menu-toggle {
     display: none;
     cursor: pointer;
+    font-size: 1.5rem;
 }
 
-.menu-toggle .bar {
-    width: 25px;
-    height: 2px;
-    background-color: #333;
-    margin: 5px 0;
-    transition: 0.4s;
-    display: block;
+/* Stories Header Styles */
+.stories-header {
+    text-align: center;
+    padding: 120px 0 30px;
+    background-color: #fff;
+    animation: fadeIn 1.5s ease-out;
 }
 
-/* Stories Section */
+.stories-title {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.stories-title h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.stories-title p {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Stories Styles */
 .stories {
-    padding: 30px 0;
+    padding: 60px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.stories.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .stories-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 30px;
+}
+
+.stories-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.stories-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    color: #666;
 }
 
 .stories-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;
+    gap: 30px;
 }
 
 .story-item {
     position: relative;
     overflow: hidden;
-    height: 0;
-    padding-bottom: 66.67%; /* 2:3 aspect ratio */
-    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: storyFadeIn 0.6s forwards;
+    animation-delay: calc(var(--item-index, 0) * 0.2s);
 }
 
-.story-item img {
+@keyframes storyFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.story-item:nth-child(1) {
+    --item-index: 1;
+}
+
+.story-item:nth-child(2) {
+    --item-index: 2;
+}
+
+.story-item:nth-child(3) {
+    --item-index: 3;
+}
+
+.story-item:nth-child(4) {
+    --item-index: 4;
+}
+
+.story-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.story-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.story-item a.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.story-image {
+    position: relative;
+    height: 0;
+    padding-bottom: 66.67%;
+    overflow: hidden;
+}
+
+.story-image img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s;
 }
 
-.story-item:hover img {
+.story-item:hover .story-image img {
     transform: scale(1.05);
 }
 
-/* Story Content Styling */
-.story-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 2;
-    width: 100%;
+.story-info {
     padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    background-color: #fff;
 }
 
-.story-item:hover .story-content {
-    opacity: 1;
+.story-info h3 {
+    margin: 0 0 10px;
+    font-weight: 700;
 }
 
-.story-content h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.story-content p {
+.story-info p {
+    margin: 0;
+    color: #666;
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    font-weight: 300;
 }
 
-.story-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 15px 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
 }
 
-.story-item:hover .story-link {
-    background: rgba(0, 0, 0, 0.4);
+@media (max-width: 768px) {
+    .nav-right {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #fff;
+        width: 250px;
+        height: calc(100vh - 70px);
+        padding: 30px;
+        box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        gap: 30px;
+    }
+    
+    .nav-right.active {
+        right: 0;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .nav-social {
+        margin-top: 20px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .stories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }
 
-/* Details Section */
-.details {
-    background-color: #f9f9f9;
-    padding: 100px 20px;
-}
-
-.details-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.details h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
-.details-text {
-    max-width: 800px;
-    margin: 0 auto 50px;
-}
-
-.details-text p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-}
-
-.details-packages {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.details-packages h3 {
-    width: 100%;
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-.package {
-    background-color: white;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    transition: transform 0.3s ease;
-}
-
-.package:hover {
-    transform: translateY(-10px);
-}
-
-.package h4 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.package p {
-    margin-bottom: 10px;
-}
-
-/* Contact Section */
-.contact {
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.contact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-}
-
-.contact-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-}
-
-.contact-info {
-    flex: 1;
-    min-width: 300px;
-    text-align: left;
-    padding: 0 20px;
-}
-
-.contact-info p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-}
-
-.social-links {
-    margin-top: 30px;
-}
-
-.social-link {
-    margin-right: 20px;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: #888;
-}
-
-.contact-form {
-    flex: 1;
-    min-width: 300px;
-    padding: 0 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.submit-btn {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-    background-color: #555;
+@media (max-width: 576px) {
+    .nav-container {
+        padding: 15px;
+    }
+    
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-tagline {
+        font-size: 0.7rem;
+    }
+    
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Footer */
@@ -406,90 +418,516 @@ footer {
     margin-top: 30px;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    .nav-container {
+/* About Page Styles */
+.about {
+    padding: 120px 0 60px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Contacts Page Styles */
+.contacts {
+    padding: 120px 0 60px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.contacts-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contacts h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contacts-intro {
+    margin-bottom: 50px;
+    font-size: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.contact-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 150px;
+}
+
+.contact-button i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contact-button span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.contact-button.whatsapp:hover {
+    background-color: #25D366;
+    color: white;
+    border-color: #25D366;
+}
+
+.contact-button.instagram:hover {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    color: white;
+    border-color: #C13584;
+}
+
+.contact-button.email:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* New Contact Page Styles */
+.contact {
+    padding: 80px 0;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contact-info p {
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.contact-details {
+    margin-top: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #666;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-item p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-submit:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .contact-content {
         flex-direction: column;
-        align-items: flex-start;
     }
     
-    .nav-left {
-        margin-bottom: 15px;
-    }
-    
-    .nav-right {
+    .contact-info,
+    .contact-form {
         width: 100%;
-        justify-content: space-between;
+    }
+}
+
+/* Stories Page Styles */
+.stories-page {
+    padding: 80px 0;
+}
+
+.stories-page h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.stories-intro {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+
+/* Wedding Detail Page Styles - Updated for minimal clean look */
+.wedding-header {
+    text-align: center;
+    padding: 120px 0 30px;
+    background-color: #fff;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.wedding-title {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.wedding-title h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.wedding-title p {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.wedding-content {
+    padding: 30px 0 60px;
+}
+
+.wedding-story {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.wedding-story p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.wedding-details {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.wedding-details h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.detail-item {
+    text-align: center;
+}
+
+.detail-item h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.detail-item p {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Updated Gallery Styles to match reference */
+.wedding-gallery {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 66.67%;
+    background-color: #f5f5f5;
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+/* Dynamic Gallery Grid */
+.dynamic-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 250px;
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.dynamic-gallery-grid .gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    padding-bottom: 0;
+    background-color: #f5f5f5;
+    grid-column: span 1;
+    grid-row: span 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: galleryFadeIn 0.6s forwards;
+    animation-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+@keyframes galleryFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dynamic-gallery-grid .gallery-item:nth-child(1) { --item-index: 1; }
+.dynamic-gallery-grid .gallery-item:nth-child(2) { --item-index: 2; }
+.dynamic-gallery-grid .gallery-item:nth-child(3) { --item-index: 3; }
+.dynamic-gallery-grid .gallery-item:nth-child(4) { --item-index: 4; }
+.dynamic-gallery-grid .gallery-item:nth-child(5) { --item-index: 5; }
+.dynamic-gallery-grid .gallery-item:nth-child(6) { --item-index: 6; }
+.dynamic-gallery-grid .gallery-item:nth-child(7) { --item-index: 7; }
+.dynamic-gallery-grid .gallery-item:nth-child(8) { --item-index: 8; }
+.dynamic-gallery-grid .gallery-item:nth-child(9) { --item-index: 9; }
+.dynamic-gallery-grid .gallery-item:nth-child(10) { --item-index: 10; }
+.dynamic-gallery-grid .gallery-item:nth-child(11) { --item-index: 11; }
+.dynamic-gallery-grid .gallery-item:nth-child(12) { --item-index: 12; }
+
+.dynamic-gallery-grid .gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.dynamic-gallery-grid .gallery-item.tall {
+    grid-row: span 2;
+}
+
+.dynamic-gallery-grid .gallery-item.wide {
+    grid-column: span 2;
+}
+
+/* Responsive Styles for Wedding Detail Pages */
+@media (max-width: 992px) {
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dynamic-gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .stories-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .navbar {
-        padding: 15px 0;
-    }
-    
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-    
-    .nav-right {
-        display: none;
-    }
-    
-    .nav-right.active {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .nav-links {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .nav-links li {
-        margin: 10px 0;
-    }
-    
-    .social-icons {
-        margin: 15px 0 0 0;
-    }
-    
-    .hero-text h1 {
+    .wedding-title h1 {
         font-size: 2rem;
     }
     
-    .hero-text .tagline {
-        font-size: 0.9rem;
+    .wedding-title p {
+        font-size: 1rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dynamic-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .wedding-story h2,
+    .wedding-details h2,
+    .wedding-gallery h2 {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 576px) {
-    .hero-text h1 {
-        font-size: 1.8rem;
+    .details-grid {
+        grid-template-columns: 1fr;
     }
     
-    .hero-text .tagline {
-        font-size: 0.8rem;
+    .dynamic-gallery-grid {
+        grid-template-columns: 1fr;
     }
-}
-
-/* Hamburger Menu Animation */
-.menu-toggle .bar.change:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.menu-toggle .bar.change:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle .bar.change:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+    
+    .dynamic-gallery-grid .gallery-item.large,
+    .dynamic-gallery-grid .gallery-item.tall,
+    .dynamic-gallery-grid .gallery-item.wide {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
 } 
